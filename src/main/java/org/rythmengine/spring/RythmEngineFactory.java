@@ -254,9 +254,11 @@ public class RythmEngineFactory extends ApplicationObjectSupport implements Phas
         // the i18 message resolver
         ApplicationContext ctx = getApplicationContext();
         if (null != ctx) {
-            SpringI18nMessageResolver i18n = new SpringI18nMessageResolver();
-            i18n.setApplicationContext(getApplicationContext());
-            p.put(RythmConfigurationKey.I18N_MESSAGE_RESOLVER.getKey(), i18n);
+        	if (!p.containsKey(RythmConfigurationKey.I18N_MESSAGE_RESOLVER.getKey())){
+            		SpringI18nMessageResolver i18n = new SpringI18nMessageResolver();
+            		i18n.setApplicationContext(getApplicationContext());
+            		p.put(RythmConfigurationKey.I18N_MESSAGE_RESOLVER.getKey(), i18n);
+        	}
         }
 
         configRythm(p);
